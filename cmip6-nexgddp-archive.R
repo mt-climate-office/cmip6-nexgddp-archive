@@ -1,12 +1,12 @@
-pak::pkg_install(
-  c("magrittr",
-    "tidyverse",
-    "multidplyr",
-    "sf",
-    "terra",
-    "ncdf4",
-    "mt-climate-office/cmip6@v1.2.0")
-)
+# pak::pak(
+#   c("magrittr",
+#     "tidyverse",
+#     "multidplyr",
+#     "sf",
+#     "terra",
+#     "ncdf4",
+#     "mt-climate-office/cmip6")
+# )
 purrr::walk(
   c("magrittr",
     "tidyverse",
@@ -85,10 +85,10 @@ list(
                                    "GEOMETRY_ENCODING=GEOARROW",
                                    "WRITE_COVERING_BBOX=NO"),
                  driver = "Parquet")
-)[c("ak")] |>
+) |>
   purrr::iwalk(\(x,y) cmip6::cmip6_dl(
-    outdir = file.path("data", y),
-    aoi = x,
+    outdir = file.path("/Volumes/SSD8/cmip6", y),
+    # aoi = x,
     models = 
       c("ACCESS-ESM1-5",
         "CNRM-ESM2-1",
@@ -99,4 +99,3 @@ list(
         "MPI-ESM1-2-HR",
         "MRI-ESM2-0")
   ))
-
